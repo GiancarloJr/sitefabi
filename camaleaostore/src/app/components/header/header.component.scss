@@ -1,0 +1,34 @@
+.header {
+    height: var(--bar-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #000000;
+    padding: 10px 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: var(--brand-ink);
+}
+
+.logo img {
+    height: 80px;
+}
+
+
+.title h1 {
+    font-size: 1.8rem;
+    color: inherit;
+    margin: 0;
+    text-align: center;
+}
+
+.social-icons a {
+    margin-left: 15px;
+    color: inherit;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: inherit;
+}

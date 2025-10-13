@@ -1,0 +1,39 @@
+<article class="card" tabindex="0">
+    <div class="media">
+        <img [src]="product.imagemUrl" [alt]="product.titulo" />
+        <!-- <span class="badge" *ngIf="product.valorFormatado">{{ product.valorFormatado }}</span> -->
+    </div>
+
+    <div class="content">
+        <!-- TÍTULO -->
+        <h3 class="title">{{ product.titulo }}</h3>
+
+        <!-- TAMANHOS -->
+        <div class="sizes" *ngIf="product.tamanhos?.length">
+            <span *ngFor="let t of product.tamanhos" class="size">{{ t }}</span>
+        </div>
+
+        <!-- DESCRIÇÃO -->
+        <p class="desc" *ngIf="product.descricao">
+            {{ product.descricao }}
+        </p>
+
+        <div class="price-container">
+            <ng-container *ngIf="product.preco != null; else sobConsulta">
+                <span class="price">
+                    <span class="amount"> R$ {{ product.preco | number:'1.2-2' }}</span>
+                </span>
+            </ng-container>
+            <ng-template #sobConsulta>
+                <span class="price muted">Sob consulta</span>
+            </ng-template>
+        </div>
+
+        <!-- BOTÃO -->
+        <div class="actions">
+            <a *ngIf="product.href" class="btn" [href]="product.href">
+                Ver detalhes
+            </a>
+        </div>
+    </div>
+</article>

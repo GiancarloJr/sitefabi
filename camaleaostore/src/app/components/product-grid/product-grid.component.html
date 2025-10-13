@@ -1,0 +1,6 @@
+<section class="grid">
+  <app-product-card
+    *ngFor="let p of products; trackBy: trackByTitle"
+    [product]="p">
+  </app-product-card>
+</section>

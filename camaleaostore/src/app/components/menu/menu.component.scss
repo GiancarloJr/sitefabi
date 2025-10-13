@@ -1,0 +1,39 @@
+.menu {
+  width: 100%;
+  height: var(--bar-height);
+  background: var(--brand-bg-strong);     /* antes: #fff */
+  color: var(--brand-ink);                 /* herdado p/ textos */
+  display: flex;
+  align-items: center;
+  border-top: 1px solid rgba(255,255,255,.12);
+  box-shadow: 0 1px 0 rgba(255,255,255,.06) inset; /* antes: sombra escura */
+}
+
+.menu ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+}
+.menu ul::-webkit-scrollbar { display: none; }
+
+.menu a {
+  text-decoration: none;
+  color: inherit;                 /* antes: #333 */
+  font-weight: 600;
+  letter-spacing: .2px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: background .2s ease, color .2s ease;
+}
+
+.menu a:hover {
+  background: rgba(255,255,255,.08);
+  color: var(--brand-accent);
+}

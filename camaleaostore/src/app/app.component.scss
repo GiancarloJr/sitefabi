@@ -1,0 +1,22 @@
+.banner-hero {
+  width: 100%;
+  height: 300px;
+  /* altura fixa que você pediu */
+  overflow: hidden;
+  /* esconde sobras */
+}
+
+.banner-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* preenche lateral completa sem distorcer */
+  display: block;
+  /* remove espaços indesejados */
+}
+
+.container {
+  max-width: 1200px;
+  margin: 24px auto;
+  padding: 0 16px;
+}

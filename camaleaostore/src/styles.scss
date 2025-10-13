@@ -1,0 +1,40 @@
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+/* styles.scss */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Raleway:wght@500;600&display=swap');
+
+.header .title h1,span {
+  font-family: "Cinzel", serif;
+  font-weight: 700;
+  letter-spacing: .5px;
+  color: var(--brand-ink);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.menu a {
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: .2px;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+:root {
+  --bar-height: 64px;
+  --brand-bg-strong: #020000;
+  --brand-ink: #ffffff;
+  --brand-accent: #4a374d; /* novo */
+}
+
+.header,
+.menu {
+  background: var(--brand-bg-strong);
+  color: var(--brand-ink);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .06) inset;
+}
