@@ -25,7 +25,7 @@ export class MenuComponent {
     { label: 'Pijamas', path: '/categoria/acessorios', href: '#' },
     { label: 'Moda Praia', path: '/categoria/acessorios', href: '#' },
     { label: 'Lingerie', path: '/categoria/acessorios', href: '#' },
-    { label: 'Permumes Brand', path: '/categoria/acessorios', href: '#' },
+    { label: 'Perfumes Brand', path: '/categoria/acessorios', href: '#' },
     { label: 'Promoçoes', path: '/categoria/acessorios', href: '#' },
   ];
 

@@ -1,151 +1,159 @@
 :host {
-    display: block;
+  display: block;
+  height: 100%;             /* ocupa toda a célula do grid */
 }
 
+/* CARD */
 .card {
-    background: #fff;
-    color: #1b1f1d;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, .06);
-    transition: transform .18s ease, box-shadow .18s ease;
-    outline: none;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
+  background: #fff;
+  color: #1b1f1d;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .06);
+  transition: transform .18s ease, box-shadow .18s ease;
+  outline: none;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  height: 100%;             /* para igualar as alturas */
 }
 
-.card:hover,
-.card:focus {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 24px rgba(0, 0, 0, .12);
+.card:hover, .card:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .12);
 }
 
 /* IMAGEM */
 .media {
-    position: relative;
-    aspect-ratio: 1 / 1;
-    background: #f2f4f5;
+  position: relative;
+  width: 100%;
+  height: 320px;          /* 🔥 altura fixa para todas as imagens */
+  background: #f2f4f5;
+  overflow: hidden;
+  border-bottom: 1px solid #eee;
 }
 
 .media img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform .25s ease;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;       /* mantém proporção, corta o excesso */
+  object-position: center; /* centraliza o recorte */
+  display: block;
+  transition: transform .25s ease;
 }
 
 .card:hover .media img {
-    transform: scale(1.03);
+  transform: scale(1.03);  /* pequeno zoom no hover */
 }
 
 .badge {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    background: var(--brand-accent, #A7FF83);
-    color: #073b2a;
-    font-weight: 700;
-    padding: 6px 10px;
-    border-radius: 999px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, .15);
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--brand-accent, #A7FF83);
+  color: #073b2a;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 999px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, .15);
 }
 
 /* CONTEÚDO */
 .content {
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    text-align: center;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: center;
+  flex: 1;                   /* ocupa o espaço restante do card */
 }
 
-/* TÍTULO */
+/* TÍTULO (trava em 2 linhas) */
 .title {
-    font: 700 1.1rem/1.2 "Raleway", sans-serif;
-    margin: 0;
-    color: #111;
+  font: 700 1.1rem/1.2 "Raleway", sans-serif;
+  margin: 0;
+  color: #111;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;      /* mostra até 2 linhas */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: calc(1.2em * 2); /* reserva espaço de 2 linhas */
 }
 
-/* TAMANHOS */
+/* TAMANHOS (alinhado com rótulo) */
 .sizes {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-family: "Raleway", sans-serif;
+  min-height: 3.8rem;         /* mantém a faixa de tamanhos com altura fixa */
 }
-
+.sizes span:first-child {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: #000;
+  margin-right: 4px;
+}
 .size {
-    background: #f2f4f4;
-    color: #1b1f1d;
-    border-radius: 6px;
-    padding: 3px 8px;
-    font: 600 .85rem "Raleway", sans-serif;
+  background: #f2f4f4;
+  color: #1b1f1d;
+  border-radius: 6px;
+  padding: 3px 8px;
+  font: 600 .85rem "Raleway", sans-serif;
+  letter-spacing: .3px;
 }
 
-/* DESCRIÇÃO */
+/* DESCRIÇÃO (trava em 2 linhas) */
 .desc {
-    font: 400 .92rem/1.4 "Raleway", sans-serif;
-    color: #4a4f4d;
-    margin: 0;
+  font: 400 .92rem/1.4 "Raleway", sans-serif;
+  color: #4a4f4d;
+  margin: 0;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;       /* ajuste para 3 se quiser mais texto */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: calc(1.4em * 2);
 }
 
 /* PREÇO */
-.price-container {
-    margin-top: 4px;
-}
-
-.price-container {
-    margin-top: 4px;
-}
-
+.price-container { margin-top: 4px; }
 .price {
-    display: inline-flex;
-    align-items: baseline;
-    justify-content: center;
-    font-family: "Raleway", sans-serif;
-    font-weight: 700;
-    color: #000000;
-    line-height: 1;
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
+  color: #000;
+  line-height: 1;
 }
-
 .currency {
-    font-size: .9rem;
-    margin-right: 2px;
-    position: relative;
-    top: -1px;
+  font-size: .9rem;
+  margin-right: 2px;
+  position: relative;
+  top: -1px;
 }
+.amount { font-size: 1.1rem; color: #000; }
+.price.muted { color: #6b6f6d; font-weight: 600; }
 
-.amount {
-    font-size: 1.1rem;
-    color: #000;
-}
-
-.price.muted {
-    color: #6b6f6d;
-    font-weight: 600;
-}
-
-
-/* BOTÃO */
+/* BOTÃO (sempre no rodapé) */
 .actions {
-    display: flex;
-    justify-content: center;
-    margin-top: 8px;
+  margin-top: auto;            /* empurra o botão para baixo */
+  display: flex;
+  justify-content: center;
 }
-
 .btn {
-    padding: 10px 18px;
-    border-radius: 10px;
-    background: var(--brand-bg-strong, #0F2A20);
-    color: var(--brand-ink, #fff);
-    text-decoration: none;
-    font: 600 .92rem "Raleway", sans-serif;
-    transition: filter .15s ease, transform .15s ease;
+  padding: 10px 18px;
+  border-radius: 10px;
+  background: var(--brand-bg-strong, #0F2A20);
+  color: var(--brand-ink, #fff);
+  text-decoration: none;
+  font: 600 .92rem "Raleway", sans-serif;
+  transition: filter .15s ease, transform .15s ease;
 }
-
-.btn:hover {
-    filter: brightness(1.08);
-    transform: translateY(-1px);
-}
+.btn:hover { filter: brightness(1.08); transform: translateY(-1px); }

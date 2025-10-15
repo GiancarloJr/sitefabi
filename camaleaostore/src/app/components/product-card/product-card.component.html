@@ -10,6 +10,7 @@
 
         <!-- TAMANHOS -->
         <div class="sizes" *ngIf="product.tamanhos?.length">
+            <span>Tamanhos: </span>
             <span *ngFor="let t of product.tamanhos" class="size">{{ t }}</span>
         </div>
 

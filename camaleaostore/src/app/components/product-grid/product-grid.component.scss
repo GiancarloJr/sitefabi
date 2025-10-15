@@ -6,24 +6,26 @@
 .grid {
   display: grid;
   justify-items: center;
-  grid-template-columns: repeat(5, minmax(0, 1fr)); /* 👉 agora 5 por linha */
-  gap: 18px;
+  grid-template-columns: repeat(5, minmax(0, 1fr)); /* 👉 5 por linha */
+  gap: 32px;      /* 🔥 aumenta espaço entre os cards */
+  padding: 0 40px; /* 🔥 adiciona respiro nas laterais */
   width: 100%;
+  box-sizing: border-box; /* garante que padding conte no tamanho total */
 }
 
 /* Responsividade */
 @media (max-width: 1280px) {
-  .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } /* notebooks */
+  .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 
 @media (max-width: 1024px) {
-  .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } /* tablets grandes */
+  .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 @media (max-width: 768px) {
-  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } /* tablets e celulares grandes */
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 480px) {
-  .grid { grid-template-columns: 1fr; } /* celular */
+  .grid { grid-template-columns: 1fr; padding: 0 16px; } /* menor padding no mobile */
 }
