@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProductCard, ProductCardComponent } from '../product-card/product-card.component';
+import { ProductCardComponent } from '../product-card/product-card.component';
+import { ProductCard } from 'src/app/models/product-card';
 
 @Component({
   selector: 'app-product-grid',

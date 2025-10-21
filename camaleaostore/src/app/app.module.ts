@@ -5,10 +5,13 @@ import localePt from '@angular/common/locales/pt';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/header/header.component';
-import { MenuComponent } from './components/menu/menu.component';
-import { ProductGridComponent } from './components/product-grid/product-grid.component';
-import { ProductCardComponent } from './components/product-card/product-card.component';
+
+import { AuthInterceptor } from './core/auth/auth.interceptor';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './components/login/login.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 registerLocaleData(localePt);
 
@@ -18,14 +21,15 @@ registerLocaleData(localePt);
   ],
   imports: [
     BrowserModule,
-    HeaderComponent,
-    MenuComponent,
-    ProductCardComponent,
-    ProductGridComponent,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    LoginComponent,
+    AdminComponent,
+    BrowserAnimationsModule
   ],
   providers: [
-     { provide: LOCALE_ID, useValue: 'pt-BR' }
+     { provide: LOCALE_ID, useValue: 'pt-BR' },
+     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

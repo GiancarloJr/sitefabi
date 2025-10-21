@@ -1,34 +1,71 @@
 .header {
-    height: var(--bar-height);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #000000;
-    padding: 10px 30px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    color: var(--brand-ink);
+  height: var(--bar-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #000;
+  padding: 10px 30px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  color: var(--brand-ink);
 }
 
 .logo img {
-    height: 80px;
+  height: 80px;
 }
 
+.title {
+  text-align: center;
 
-.title h1 {
+  h1 {
     font-size: 1.8rem;
     color: inherit;
     margin: 0;
-    text-align: center;
+  }
+
+  span {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #fff;
+    letter-spacing: 1px;
+  }
 }
 
-.social-icons a {
-    margin-left: 15px;
+.social-icons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  a {
     color: inherit;
     font-size: 1.5rem;
     text-decoration: none;
     transition: color 0.3s ease;
-}
 
-.social-icons a:hover {
-    color: inherit;
+    &:hover {
+      color: #ffcc00; // tom de destaque ao passar o mouse
+    }
+  }
+
+  .login-btn {
+    margin-left: 10px;
+    padding: 6px 16px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    background: transparent;
+    border: 2px solid #fff;
+    border-radius: 6px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: #fff;
+      color: #000;
+    }
+
+    &:active {
+      transform: scale(0.97);
+    }
+  }
 }

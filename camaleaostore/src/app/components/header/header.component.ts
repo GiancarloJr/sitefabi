@@ -11,4 +11,9 @@ import { CommonModule } from '@angular/common';
 })
 export class HeaderComponent {
 
+  onLogin() {
+  // Exemplo: redirecionar para /login
+  window.location.href = '/login';
+}
+
 }

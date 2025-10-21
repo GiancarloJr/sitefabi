@@ -2,13 +2,13 @@
 /* styles.scss */
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Raleway:wght@500;600&display=swap');
 
-.header .title h1,span {
+.header .title h1,
+.header .title span {
   font-family: "Cinzel", serif;
   font-weight: 700;
-  letter-spacing: .5px;
+  letter-spacing: 1px;
   color: var(--brand-ink);
   text-transform: uppercase;
-  letter-spacing: 1px;
 }
 
 .menu a {
@@ -38,3 +38,5 @@ body {
   color: var(--brand-ink);
   box-shadow: 0 1px 0 rgba(255, 255, 255, .06) inset;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

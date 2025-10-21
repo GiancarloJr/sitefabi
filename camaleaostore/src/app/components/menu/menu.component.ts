@@ -24,7 +24,7 @@ export class MenuComponent {
     { label: 'Moda plus Size', path: '/categoria/acessorios', href: '#' },
     { label: 'Pijamas', path: '/categoria/acessorios', href: '#' },
     { label: 'Moda Praia', path: '/categoria/acessorios', href: '#' },
-    { label: 'Lingerie', path: '/categoria/acessorios', href: '#' },
+    { label: 'Acessórios', path: '/categoria/acessorios', href: '#' },
     { label: 'Perfumes Brand', path: '/categoria/acessorios', href: '#' },
     { label: 'Promoçoes', path: '/categoria/acessorios', href: '#' },
   ];

@@ -1,6 +1,6 @@
 <article class="card" tabindex="0">
     <div class="media">
-        <img [src]="product.imagemUrl" [alt]="product.titulo" />
+        <img [src]="product.imagemBase64 || product.imagemUrl" [alt]="product.titulo" />
         <!-- <span class="badge" *ngIf="product.valorFormatado">{{ product.valorFormatado }}</span> -->
     </div>
 

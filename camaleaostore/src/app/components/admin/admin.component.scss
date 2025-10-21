@@ -1,0 +1,111 @@
+.container {
+    max-width: 1400px;
+    margin: 0 auto; // centraliza o conteúdo
+    padding: 1rem; // espaçamento interno
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; // espaçamento entre blocos principais
+}
+
+.admin-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: .75rem;
+}
+
+.filters {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(160px, 1fr));
+  gap: 0.75rem;
+  align-items: end;
+  margin-bottom: 0.75rem;
+
+  /* Deixa todos os mat-form-field com mesma altura visual */
+  mat-form-field {
+    width: 100%;
+  }
+
+  button {
+    height: 56px;
+    align-self: stretch;             /* ocupa toda a altura da linha */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    background: #f5f5f5;
+    border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+
+    mat-icon {
+      margin-right: 6px;
+    }
+
+    &:hover {
+      background: #e0e0e0;
+    }
+  }
+}
+
+
+.table-wrapper {
+    position: relative;
+    overflow: auto;
+}
+
+.loading-backdrop {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    background: rgba(255, 255, 255, .6);
+    font-weight: 600;
+    z-index: 1;
+}
+
+.thumb {
+    object-fit: cover;
+    border-radius: .5rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
+}
+
+td.descricao {
+    max-width: 420px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.noimg {
+    opacity: .6;
+}
+
+span {
+    color: black;
+}
+
+.mat-mdc-table .mdc-data-table__row {
+    height: 300px;
+}
+
+.mdc-data-table__cell {
+    text-align: center;
+}
+
+.mdc-data-table__header-cell {
+    text-align: center;
+}
+
+::ng-deep .mat-sort-header-container {
+    justify-content: center !important;
+}
+
+.mat-sort-header-container {
+  justify-content: center !important;
+}
+
+td.mat-cell {
+  vertical-align: middle;
+}
