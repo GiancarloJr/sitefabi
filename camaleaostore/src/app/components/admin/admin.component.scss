@@ -69,7 +69,9 @@
   gap: .8rem;
   align-items: end;
 
-  mat-form-field { width: 100%; }
+  mat-form-field {
+    width: 100%;
+  }
 
   /* mesmo estilo do botão outlined */
   ::ng-deep .mat-mdc-outlined-button {
@@ -104,24 +106,33 @@
 }
 
 /* Centralização de cabeçalhos e células */
-::ng-deep .mat-sort-header-container { justify-content: center !important; }
+::ng-deep .mat-sort-header-container {
+  justify-content: center !important;
+}
+
 .mdc-data-table__cell,
 .mdc-data-table__header-cell {
   text-align: center;
   vertical-align: middle;
 }
 
-td.mat-cell { vertical-align: middle; }
+td.mat-cell {
+  vertical-align: middle;
+}
 
 /* Linhas mais altas p/ imagem */
-::ng-deep .mat-mdc-table .mdc-data-table__row { height: 300px; }
+::ng-deep .mat-mdc-table .mdc-data-table__row {
+  height: 300px;
+}
 
 /* Paginator claro (fundido em um bloco) */
 ::ng-deep .mat-mdc-paginator,
 ::ng-deep .mat-mdc-paginator .mat-mdc-paginator-range-actions,
 ::ng-deep .mat-mdc-paginator .mat-mdc-paginator-navigation-previous,
 ::ng-deep .mat-mdc-paginator .mat-mdc-paginator-navigation-next,
-::ng-deep .mat-mdc-select-value { color: #f2f2f2 !important; }
+::ng-deep .mat-mdc-select-value {
+  color: #f2f2f2 !important;
+}
 
 /* ====== AVATAR/IMAGEM ====== */
 .thumb {
@@ -166,7 +177,9 @@ td.descricao {
   text-overflow: ellipsis;
 }
 
-.noimg { opacity: .6; }
+.noimg {
+  opacity: .6;
+}
 
 /* Campos (labels, texto, bordas, setas, select) — BLOCO ÚNICO FUNDIDO */
 ::ng-deep .mdc-notched-outline__leading,
@@ -214,6 +227,11 @@ td.descricao {
 
 /* ====== RESPONSIVO ====== */
 @media (max-width: 900px) {
-  .filters { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
-  .container { padding: .9rem; }
+  .filters {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+
+  .container {
+    padding: .9rem;
+  }
 }

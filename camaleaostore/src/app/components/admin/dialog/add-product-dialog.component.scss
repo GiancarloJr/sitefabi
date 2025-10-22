@@ -1,15 +1,3 @@
-/* ====== SURFACE DO DIALOG (fundo com imagem + overlay) ====== */
-:host ::ng-deep .add-product-dialog .mat-mdc-dialog-surface {
-  position: relative;
-  overflow: hidden;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,.12);
-  box-shadow: 0 10px 24px rgba(0,0,0,.35);
-
-  /* fundo com imagem */
-  background: url("../../../../assets/admin/bg-admin.jpg") center / cover no-repeat;
-}
-
 /* overlay vidro por cima da imagem */
 :host ::ng-deep .add-product-dialog .mat-mdc-dialog-surface::after {
   content: "";
@@ -21,14 +9,33 @@
   -webkit-backdrop-filter: blur(8px) saturate(105%);
 }
 
-
 /* conteúdo do seu template (dialog-wrap) fica acima do overlay */
 .dialog-wrap {
   position: relative;
   z-index: 1;
   padding: 1.25rem 1.25rem 1rem;
-  color: #000000;        /* força cor consistente */
+  color: #000000;
+
+  .bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: url('/assets/admin/bg-admin.jpg') center/cover no-repeat;
+    filter: grayscale(30%) brightness(1.2);
+    border-radius: inherit;
+  }
 }
+
+.dialog-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(3px);
+  z-index: -1;
+  border-radius: inherit;
+}
+
 
 /* botão X */
 .close-btn {
@@ -37,7 +44,10 @@
   right: .4rem;
   color: #000000;
   opacity: .9;
-  &:hover { opacity: 1; }
+
+  &:hover {
+    opacity: 1;
+  }
 }
 
 /* título */
@@ -50,50 +60,70 @@
 /* GRID: esquerda (mídia) + direita (form) — mais largo */
 .dialog-grid {
   display: grid;
-  grid-template-columns: 380px 1fr;  /* ↑ aumentei a coluna da esquerda */
+  grid-template-columns: 380px 1fr;
+  /* ↑ aumentei a coluna da esquerda */
   gap: 1rem 1.25rem;
   align-items: start;
 }
-.full { grid-column: 1 / -1; }
+
+.full {
+  grid-column: 1 / -1;
+}
 
 
-/* form da direita */
+
 .form {
   display: grid;
   grid-template-columns: repeat(2, minmax(190px, 1fr));
   gap: .8rem 1rem;
 }
-.form .full { grid-column: 1 / -1; }
 
-/* ações */
-.actions {
-  display: flex; justify-content: flex-end; gap: .75rem; margin-top: .25rem;
+.form .full {
+  grid-column: 1 / -1;
 }
-.actions button mat-icon { margin-right: 6px; }
 
-/* campos (tema claro) */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: .75rem;
+  margin-top: .25rem;
+}
+
+.actions button mat-icon {
+  margin-right: 6px;
+}
+
 :host ::ng-deep .mat-mdc-form-field-input-control,
-:host ::ng-deep .mat-mdc-select-value-text { color: #000 !important; }
+:host ::ng-deep .mat-mdc-select-value-text {
+  color: #000 !important;
+}
 
-:host ::ng-deep .mat-mdc-form-field-label { color: rgba(0,0,0,.75) !important; }
+:host ::ng-deep .mat-mdc-form-field-label {
+  color: rgba(0, 0, 0, .75) !important;
+}
 
-/* bordas do outline em tom escuro */
 :host ::ng-deep .mdc-notched-outline__leading,
 :host ::ng-deep .mdc-notched-outline__notch,
-:host ::ng-deep .mdc-notched-outline__trailing { border-color: rgba(0,0,0,.28) !important; }
-
-/* seta do select em preto */
-:host ::ng-deep .mat-mdc-select-arrow svg { fill: #000 !important; }
-
-
-/* RESPONSIVO */
-@media (max-width: 920px) {
-  .dialog-grid { grid-template-columns: 1fr; }
-  .preview img { width: 220px; height: 300px; }
+:host ::ng-deep .mdc-notched-outline__trailing {
+  border-color: rgba(0, 0, 0, .28) !important;
 }
 
-/* ====== COLUNA ESQUERDA: MEDIA (UPLOAD + PREVIEW) ====== */
-/* coluna esquerda (card vidro claro) */
+:host ::ng-deep .mat-mdc-select-arrow svg {
+  fill: #000 !important;
+}
+
+
+@media (max-width: 920px) {
+  .dialog-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .preview img {
+    width: 220px;
+    height: 300px;
+  }
+}
+
 .media {
   display: flex;
   flex-direction: column;
@@ -101,11 +131,11 @@
   gap: .9rem;
   padding: 1rem;
   border-radius: 14px;
-  background: rgba(255,255,255,.55);
-  border: 1px solid rgba(0,0,0,.12);
+  background: rgba(255, 255, 255, .55);
+  border: 1px solid rgba(0, 0, 0, .12);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  box-shadow: 0 6px 16px rgba(0,0,0,.12);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, .12);
   color: #111;
 }
 
@@ -116,22 +146,28 @@
   align-items: center;
   gap: .6rem;
 }
+
 .preview img {
-  width: 260px; height: 340px; object-fit: cover;
+  width: 260px;
+  height: 340px;
+  object-fit: cover;
   border-radius: 12px;
-  border: 1px solid rgba(0,0,0,.12);
-  box-shadow: 0 12px 20px rgba(0,0,0,.15);
+  border: 1px solid rgba(0, 0, 0, .12);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, .15);
   background: #fff;
 }
+
 .img-actions {
   display: flex;
   gap: .5rem;
   flex-wrap: wrap;
   justify-content: center;
 }
-.img-actions button mat-icon { margin-right: 6px; }
 
-/* quando não tem imagem: só um botão */
+.img-actions button mat-icon {
+  margin-right: 6px;
+}
+
 .uploader {
   display: flex;
   flex-direction: column;
@@ -140,14 +176,35 @@
   padding: .75rem;
   width: 100%;
   border-radius: 12px;
-  border: 1px dashed rgba(0,0,0,.28);
-  background: rgba(255,255,255,.7);
+  border: 1px dashed rgba(0, 0, 0, .28);
+  background: rgba(255, 255, 255, .7);
 }
+
 .select-btn {
   height: 40px;
   border-radius: 8px;
   font-weight: 500;
 }
-.select-btn mat-icon { margin-right: 6px; }
-.hint { font-size: .78rem; opacity: .7; }
 
+.select-btn mat-icon {
+  margin-right: 6px;
+}
+
+.hint {
+  font-size: .78rem;
+  opacity: .7;
+}
+
+::ng-deep .mat-mdc-form-field-label,
+::ng-deep .mat-mdc-form-field .mdc-floating-label {
+  color: rgba(2, 2, 2, 0.85) !important;
+}
+
+.card-ghost {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .25);
+}

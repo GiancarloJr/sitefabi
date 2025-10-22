@@ -60,7 +60,7 @@ export class AdminComponent implements OnInit, AfterViewInit {
 
   openAddProduct(): void {
     const ref = this.dialog.open(AddProductDialogComponent, {
-      panelClass: 'add-product-dialog',   // <— usaremos no CSS
+      panelClass: 'add-product-dialog',  
       width: '1000px',
       maxWidth: '95vw',
       maxHeight: '90vh',
