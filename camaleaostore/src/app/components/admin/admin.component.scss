@@ -3,7 +3,6 @@
   position: relative;
   min-height: 100vh;
   isolation: isolate;
-  /* garante camadas corretas */
 }
 
 .admin-screen .bg {
@@ -11,7 +10,6 @@
   inset: 0;
   z-index: -1;
   background: url('/assets/admin/bg-admin.jpg') center/cover no-repeat;
-  /* estilo do mock: levemente cinza e escuro p/ contraste */
   filter: grayscale(10%) brightness(1.0);
 }
 
@@ -24,7 +22,6 @@
   flex-direction: column;
   gap: 1.25rem;
   color: #f2f2f2;
-  /* texto padrão claro sobre fundo escuro */
 }
 
 /* ====== CARTÕES “VIDRO” ====== */
@@ -55,6 +52,8 @@
     font-weight: 700;
     letter-spacing: .5px;
   }
+
+  /* botões outlined claros */
   ::ng-deep .mat-mdc-outlined-button {
     --mdc-outlined-button-label-text-color: #fff;
     --mdc-outlined-button-outline-color: rgba(255, 255, 255, .6);
@@ -70,16 +69,9 @@
   gap: .8rem;
   align-items: end;
 
-  mat-form-field {
-    width: 100%;
-  }
+  mat-form-field { width: 100%; }
 
-  // &:hover {
-  //   background: #e0e0e0;
-  // }
-
-
-  /* botão limpar no mesmo estilo glass */
+  /* mesmo estilo do botão outlined */
   ::ng-deep .mat-mdc-outlined-button {
     --mdc-outlined-button-label-text-color: #fff;
     --mdc-outlined-button-outline-color: rgba(255, 255, 255, .6);
@@ -91,11 +83,11 @@
 /* ====== TABELA ====== */
 .table-wrapper {
   position: relative;
-  padding: .6rem .6rem 0 .6rem;
+  padding: .6rem .6rem 0;
   overflow: auto;
 }
 
-/* Transparência total da tabela/paginator */
+/* Transparência e cor clara em tabela e paginator */
 ::ng-deep .mat-mdc-table,
 ::ng-deep .mdc-data-table__content,
 ::ng-deep .mdc-data-table__header-row,
@@ -107,39 +99,29 @@
 
 ::ng-deep .mdc-data-table__cell,
 ::ng-deep .mdc-data-table__header-cell {
-  border-bottom-color: rgb(255, 255, 255) !important;
-  color: rgb(255, 255, 255) !important;
+  border-bottom-color: #fff !important;
+  color: #fff !important;
 }
 
-/* Cabeçalhos centralizados */
-::ng-deep .mat-sort-header-container {
-  justify-content: center !important;
-}
-
-/* Células centralizadas */
+/* Centralização de cabeçalhos e células */
+::ng-deep .mat-sort-header-container { justify-content: center !important; }
 .mdc-data-table__cell,
 .mdc-data-table__header-cell {
   text-align: center;
   vertical-align: middle;
 }
 
-td.mat-cell {
-  vertical-align: middle;
-}
+td.mat-cell { vertical-align: middle; }
 
 /* Linhas mais altas p/ imagem */
-::ng-deep .mat-mdc-table .mdc-data-table__row {
-  height: 300px;
-}
+::ng-deep .mat-mdc-table .mdc-data-table__row { height: 300px; }
 
-/* Paginator claro */
+/* Paginator claro (fundido em um bloco) */
 ::ng-deep .mat-mdc-paginator,
-::ng-deep .mat-mdc-paginator-navigation-previous,
-::ng-deep .mat-mdc-paginator-navigation-next,
-::ng-deep .mat-mdc-paginator-range-actions,
-::ng-deep .mat-mdc-select-value {
-  color: #f2f2f2 !important;
-}
+::ng-deep .mat-mdc-paginator .mat-mdc-paginator-range-actions,
+::ng-deep .mat-mdc-paginator .mat-mdc-paginator-navigation-previous,
+::ng-deep .mat-mdc-paginator .mat-mdc-paginator-navigation-next,
+::ng-deep .mat-mdc-select-value { color: #f2f2f2 !important; }
 
 /* ====== AVATAR/IMAGEM ====== */
 .thumb {
@@ -184,24 +166,24 @@ td.descricao {
   text-overflow: ellipsis;
 }
 
-.noimg {
-  opacity: .6;
-}
+.noimg { opacity: .6; }
 
-/* Respeita contraste em campos */
+/* Campos (labels, texto, bordas, setas, select) — BLOCO ÚNICO FUNDIDO */
 ::ng-deep .mdc-notched-outline__leading,
 ::ng-deep .mdc-notched-outline__notch,
 ::ng-deep .mdc-notched-outline__trailing {
   border-color: rgba(255, 255, 255, .35) !important;
 }
 
+::ng-deep .mat-mdc-form-field-label,
+::ng-deep .mat-mdc-form-field .mdc-floating-label {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+::ng-deep .mat-mdc-input-element,
 ::ng-deep .mat-mdc-form-field-input-control,
 ::ng-deep .mat-mdc-select-value-text {
   color: #fff !important;
-}
-
-::ng-deep .mat-mdc-form-field-label {
-  color: rgba(255, 255, 255, .8) !important;
 }
 
 ::ng-deep .mat-mdc-form-field-icon-suffix mat-icon,
@@ -209,76 +191,29 @@ td.descricao {
   fill: #fff !important;
 }
 
-
-@media (max-width: 900px) {
-  .filters {
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  }
-
-  .container {
-    padding: .9rem;
-  }
-}
-
-
-/* força o label dos filtros a ficar branco */
-::ng-deep .mat-mdc-form-field .mdc-floating-label {
-  color: rgba(255, 255, 255, 0.85) !important;
-}
-
-/* também aplica ao texto dentro do input */
-::ng-deep .mat-mdc-input-element {
+/* Chips: label clara + uppercase */
+::ng-deep .mat-mdc-standard-chip .mdc-evolution-chip__text-label {
   color: #fff !important;
+  text-transform: uppercase !important;
+  letter-spacing: .5px;
 }
 
-/* e ao placeholder flutuante do select */
-::ng-deep .mat-mdc-select-value-text {
-  color: #fff !important;
-}
-
-/* seta do select branca */
-::ng-deep .mat-mdc-select-arrow svg {
-  fill: #fff !important;
-}
-
-/* borda do campo */
-::ng-deep .mdc-notched-outline__leading,
-::ng-deep .mdc-notched-outline__notch,
-::ng-deep .mdc-notched-outline__trailing {
-  border-color: rgba(255,255,255,.35) !important;
-}
-
-/* Centraliza os chips dentro da célula */
-::ng-deep td.mat-cell mat-chip-set {
+/* Centralização consistente do set de chips (fundido) */
+::ng-deep td.mat-cell mat-chip-set,
+::ng-deep .mdc-evolution-chip-set__chips,
+::ng-deep mat-chip-set.mat-mdc-chip-set {
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
   gap: 6px !important;
+  flex-wrap: wrap !important;
   width: 100%;
   margin: 0 auto !important;
   padding: 0 !important;
 }
 
-::ng-deep .mdc-evolution-chip-set__chips {
-  display: flex !important;
-  justify-content: center !important;
-  flex-flow: wrap !important;
-  min-width: 0 !important;
-}
-
-::ng-deep mat-chip-set.mat-mdc-chip-set {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-::ng-deep .mat-mdc-standard-chip .mdc-evolution-chip__text-label {
-  color: #fff !important;
-}
-
-
-::ng-deep .mat-mdc-standard-chip .mdc-evolution-chip__text-label {
-  color: #fff !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.5px;
+/* ====== RESPONSIVO ====== */
+@media (max-width: 900px) {
+  .filters { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+  .container { padding: .9rem; }
 }
