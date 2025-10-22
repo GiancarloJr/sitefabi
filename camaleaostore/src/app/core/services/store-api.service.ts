@@ -15,6 +15,17 @@ export interface ProductCard {
   href?: string;
 }
 
+export interface CreateProductDto {
+  titulo: string;
+  preco: number | null;
+  descricao: string | null;
+  tamanhos: string[] | null;
+  imagem_base64: string | null;
+  valor_formatado?: string | null; // opcional
+  href: string | null;
+  categoria_id: number | null;
+}
+
 @Injectable({ providedIn: 'root' })
 export class StoreApiService {
   private http = inject(HttpClient);
@@ -26,6 +37,10 @@ export class StoreApiService {
 
   getProdutos(): Observable<ProductCard[]> {
     return this.http.get<ProductCard[]>(`${this.baseUrl}/produtos`);
+  }
+
+  createProduto(body: CreateProductDto): Observable<any> {
+    return this.http.post(`${this.baseUrl}/produtos`, body);
   }
 
   getCategorias(): Observable<Category[]> {

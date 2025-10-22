@@ -1,111 +1,220 @@
-.container {
-    max-width: 1400px;
-    margin: 0 auto; // centraliza o conteúdo
-    padding: 1rem; // espaçamento interno
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem; // espaçamento entre blocos principais
+/* ====== LAYOUT COM FUNDO ====== */
+.admin-screen {
+  position: relative;
+  min-height: 100vh;
+  isolation: isolate;
+  /* garante camadas corretas */
 }
 
+.admin-screen .bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: url('/assets/admin/bg-admin.jpg') center/cover no-repeat;
+  /* estilo do mock: levemente cinza e escuro p/ contraste */
+  filter: grayscale(10%) brightness(1.0);
+}
+
+/* ====== CONTAINER ====== */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  color: #f2f2f2;
+  /* texto padrão claro sobre fundo escuro */
+}
+
+/* ====== CARTÕES “VIDRO” ====== */
+.card-ghost {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .25);
+}
+
+/* ====== TOOLBAR ====== */
 .admin-toolbar {
+  padding: .9rem 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .toolbar-actions {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin-bottom: .75rem;
+    gap: .75rem;
+  }
+
+  h2 {
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: .5px;
+  }
+  ::ng-deep .mat-mdc-outlined-button {
+    --mdc-outlined-button-label-text-color: #fff;
+    --mdc-outlined-button-outline-color: rgba(255, 255, 255, .6);
+    border-color: rgba(255, 255, 255, .6) !important;
+  }
 }
 
+/* ====== FILTROS ====== */
 .filters {
+  padding: 1rem 1.2rem;
   display: grid;
-  grid-template-columns: repeat(6, minmax(160px, 1fr));
-  gap: 0.75rem;
+  grid-template-columns: repeat(5, minmax(160px, 1fr));
+  gap: .8rem;
   align-items: end;
-  margin-bottom: 0.75rem;
 
-  /* Deixa todos os mat-form-field com mesma altura visual */
   mat-form-field {
     width: 100%;
   }
 
-  button {
+  // &:hover {
+  //   background: #e0e0e0;
+  // }
+
+
+  /* botão limpar no mesmo estilo glass */
+  ::ng-deep .mat-mdc-outlined-button {
+    --mdc-outlined-button-label-text-color: #fff;
+    --mdc-outlined-button-outline-color: rgba(255, 255, 255, .6);
+    border-color: rgba(255, 255, 255, .6) !important;
     height: 56px;
-    align-self: stretch;             /* ocupa toda a altura da linha */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 500;
-    background: #f5f5f5;
-    border-radius: 8px;
-    border: 1px solid rgba(0,0,0,0.1);
-    transition: all 0.2s ease;
-
-    mat-icon {
-      margin-right: 6px;
-    }
-
-    &:hover {
-      background: #e0e0e0;
-    }
   }
 }
 
-
+/* ====== TABELA ====== */
 .table-wrapper {
-    position: relative;
-    overflow: auto;
+  position: relative;
+  padding: .6rem .6rem 0 .6rem;
+  overflow: auto;
 }
 
-.loading-backdrop {
-    position: absolute;
-    inset: 0;
-    display: grid;
-    place-items: center;
-    background: rgba(255, 255, 255, .6);
-    font-weight: 600;
-    z-index: 1;
+/* Transparência total da tabela/paginator */
+::ng-deep .mat-mdc-table,
+::ng-deep .mdc-data-table__content,
+::ng-deep .mdc-data-table__header-row,
+::ng-deep .mdc-data-table__row,
+::ng-deep .mat-mdc-paginator {
+  background: transparent !important;
+  color: #f2f2f2 !important;
 }
 
-.thumb {
-    object-fit: cover;
-    border-radius: .5rem;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
+::ng-deep .mdc-data-table__cell,
+::ng-deep .mdc-data-table__header-cell {
+  border-bottom-color: rgba(255, 255, 255, .12) !important;
 }
 
-td.descricao {
-    max-width: 420px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.noimg {
-    opacity: .6;
-}
-
-span {
-    color: black;
-}
-
-.mat-mdc-table .mdc-data-table__row {
-    height: 300px;
-}
-
-.mdc-data-table__cell {
-    text-align: center;
-}
-
-.mdc-data-table__header-cell {
-    text-align: center;
-}
-
+/* Cabeçalhos centralizados */
 ::ng-deep .mat-sort-header-container {
-    justify-content: center !important;
+  justify-content: center !important;
 }
 
-.mat-sort-header-container {
-  justify-content: center !important;
+/* Células centralizadas */
+.mdc-data-table__cell,
+.mdc-data-table__header-cell {
+  text-align: center;
+  vertical-align: middle;
 }
 
 td.mat-cell {
   vertical-align: middle;
+}
+
+/* Linhas mais altas p/ imagem */
+::ng-deep .mat-mdc-table .mdc-data-table__row {
+  height: 300px;
+}
+
+/* Paginator claro */
+::ng-deep .mat-mdc-paginator,
+::ng-deep .mat-mdc-paginator-navigation-previous,
+::ng-deep .mat-mdc-paginator-navigation-next,
+::ng-deep .mat-mdc-paginator-range-actions,
+::ng-deep .mat-mdc-select-value {
+  color: #f2f2f2 !important;
+}
+
+/* ====== AVATAR/IMAGEM ====== */
+.thumb {
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, .35);
+}
+
+/* ====== CHIPS ====== */
+td.mat-cell mat-chip-set {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  min-height: 56px;
+}
+
+::ng-deep mat-chip {
+  background: rgba(255, 255, 255, .14) !important;
+  color: #fff !important;
+  border-radius: 8px !important;
+  height: 30px !important;
+}
+
+/* ====== LOADING ====== */
+.loading-backdrop {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, .35);
+  font-weight: 600;
+  z-index: 1;
+  border-radius: 14px;
+}
+
+/* ====== UTIL ====== */
+td.descricao {
+  max-width: 420px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.noimg {
+  opacity: .6;
+}
+
+/* Respeita contraste em campos */
+::ng-deep .mdc-notched-outline__leading,
+::ng-deep .mdc-notched-outline__notch,
+::ng-deep .mdc-notched-outline__trailing {
+  border-color: rgba(255, 255, 255, .35) !important;
+}
+
+::ng-deep .mat-mdc-form-field-input-control,
+::ng-deep .mat-mdc-select-value-text {
+  color: #fff !important;
+}
+
+::ng-deep .mat-mdc-form-field-label {
+  color: rgba(255, 255, 255, .8) !important;
+}
+
+::ng-deep .mat-mdc-form-field-icon-suffix mat-icon,
+::ng-deep .mat-mdc-select-arrow svg {
+  fill: #fff !important;
+}
+
+/* Responsivo */
+@media (max-width: 900px) {
+  .filters {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+
+  .container {
+    padding: .9rem;
+  }
 }

@@ -20,6 +20,8 @@ import { ProductCard } from 'src/app/models/product-card';
 import { Category } from 'src/app/models/category';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { AddProductDialogComponent } from './dialog/add-product-dialog.component';
 
 type FiltersForm = {
   titulo: FormControl<string>;
@@ -43,7 +45,7 @@ type FilterModel = {
   imports: [
     CommonModule, FormsModule, ReactiveFormsModule, CurrencyPipe, NgOptimizedImage,
     MatTableModule, MatPaginatorModule, MatSortModule,
-    MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, MatChipsModule, MatTooltipModule, MatSelectModule, MatOptionModule
+    MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, MatChipsModule, MatTooltipModule, MatSelectModule, MatOptionModule, MatDialogModule
   ],
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss']
@@ -54,6 +56,24 @@ export class AdminComponent implements OnInit, AfterViewInit {
   private router = inject(Router);
   private fb = inject(FormBuilder);
   private api = inject(StoreApiService);
+  private dialog = inject(MatDialog);
+
+  openAddProduct(): void {
+    const ref = this.dialog.open(AddProductDialogComponent, {
+      panelClass: 'add-product-dialog',   // <— usaremos no CSS
+      width: '1000px',
+      maxWidth: '95vw',
+      maxHeight: '90vh',
+      autoFocus: false,
+      disableClose: true,
+      data: { categorias: this.categorias },
+    });
+
+    ref.afterClosed().subscribe((created: boolean) => {
+      if (created) this.fetchProdutos();
+    });
+  }
+
 
   displayedColumns: string[] = ['imagem', 'titulo', 'preco', 'descricao', 'tamanhos', 'categoria'];
   dataSource = new MatTableDataSource<ProductCard>([]);
