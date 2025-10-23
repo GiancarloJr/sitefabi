@@ -17,6 +17,7 @@ export class HomeComponent {
 
   produtos: ProductCard[] = [
     {
+      id: 6,
       titulo: 'Camiseta Vintage Camaleão',
       preco: 89.90,
       descricao: 'Malha premium, modelagem confortável.',
@@ -26,6 +27,7 @@ export class HomeComponent {
       href: '#'
     },
     {
+      id: 6,
       titulo: 'Calça Jeans Slim',
       preco: 159.90,
       descricao: 'Jeans stretch, lavagem média.',
@@ -35,6 +37,7 @@ export class HomeComponent {
       href: '#'
     },
     {
+      id: 6,
       titulo: 'Vestido Midi Floral',
       preco: 199.90,
       descricao: 'Viscose leve, modelagem midi.',
@@ -44,6 +47,7 @@ export class HomeComponent {
       href: '#'
     },
     {
+      id: 6,
       titulo: 'Roupa Íntima Confort',
       preco: 49.90,
       descricao: 'Microfibra macia, várias cores.',
@@ -53,6 +57,7 @@ export class HomeComponent {
       href: '#'
     },
     {
+      id: 6,
       titulo: 'Acessório — Cinto Couro',
       preco: 79.90,
       descricao: 'Couro legítimo, fivela metálica.',
@@ -62,6 +67,7 @@ export class HomeComponent {
       href: '#'
     },
     {
+      id: 6,
       titulo: 'Camiseta Vintage Camaleão',
       preco: 89.90,
       descricao: 'Malha premium, modelagem confortável.',
@@ -71,6 +77,7 @@ export class HomeComponent {
       href: '#'
     },
     {
+      id: 6,
       titulo: 'Calça Jeans Slim',
       preco: 159.90,
       descricao: 'Jeans stretch, lavagem média.',
@@ -80,6 +87,7 @@ export class HomeComponent {
       href: '#'
     },
     {
+      id: 6,
       titulo: 'Vestido Midi Floral',
       preco: 199.90,
       descricao: 'Viscose leve, modelagem midi.',
@@ -89,6 +97,7 @@ export class HomeComponent {
       href: '#'
     },
     {
+      id: 6,
       titulo: 'Roupa Íntima Confort',
       preco: 49.90,
       descricao: 'Microfibra macia, várias cores.',
@@ -98,6 +107,7 @@ export class HomeComponent {
       href: '#'
     },
     {
+      id: 6,
       titulo: 'Acessório — Cinto Couro',
       preco: 79.90,
       descricao: 'Couro legítimo, fivela metálica.',
@@ -107,6 +117,7 @@ export class HomeComponent {
       href: '#'
     },
     {
+      id: 5,
       titulo: 'Camiseta Vintage Camaleão',
       preco: 89.90,
       descricao: 'Malha premium, modelagem confortável.',
@@ -116,6 +127,7 @@ export class HomeComponent {
       href: '#'
     },
     {
+      id: 4,
       titulo: 'Calça Jeans Slim',
       preco: 159.90,
       descricao: 'Jeans stretch, lavagem média.',
@@ -125,6 +137,7 @@ export class HomeComponent {
       href: '#'
     },
     {
+      id: 3,
       titulo: 'Vestido Midi Floral',
       preco: 199.90,
       descricao: 'Viscose leve, modelagem midi.',
@@ -134,6 +147,7 @@ export class HomeComponent {
       href: '#'
     },
     {
+      id: 2,
       titulo: 'Roupa Íntima Confort',
       preco: 49.90,
       descricao: 'Microfibra macia, várias cores.',
@@ -143,6 +157,7 @@ export class HomeComponent {
       href: '#'
     },
     {
+      id: 1,
       titulo: 'Acessório — Cinto Couro',
       preco: 79.90,
       descricao: 'Couro legítimo, fivela metálica.',

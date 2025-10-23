@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environments';
 import { Category } from 'src/app/models/category';
 
 export interface ProductCard {
+  id: number,
   titulo: string;
   preco?: number;
   descricao?: string;
@@ -50,5 +51,17 @@ export class StoreApiService {
         .pipe(shareReplay(1));
     }
     return this.categorias$;
+  }
+
+  toggleProdutoAtivo(id: number, ativo: boolean) {
+    return this.http.patch(`${this.baseUrl}/produtos/${id}/ativo`, { ativo });
+  }
+
+  updateProduto(id: number, body: CreateProductDto) {
+  return this.http.patch(`${this.baseUrl}/produtos/${id}`, body);
+}
+
+  deleteProduto(id: number) {
+    return this.http.delete(`${this.baseUrl}/produtos/${id}`);
   }
 }

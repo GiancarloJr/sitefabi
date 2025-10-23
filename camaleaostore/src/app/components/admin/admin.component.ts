@@ -22,6 +22,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { AddProductDialogComponent } from './dialog/add-product-dialog.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 type FiltersForm = {
   titulo: FormControl<string>;
@@ -45,7 +46,7 @@ type FilterModel = {
   imports: [
     CommonModule, FormsModule, ReactiveFormsModule, CurrencyPipe, NgOptimizedImage,
     MatTableModule, MatPaginatorModule, MatSortModule,
-    MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, MatChipsModule, MatTooltipModule, MatSelectModule, MatOptionModule, MatDialogModule
+    MatFormFieldModule, MatSlideToggleModule, MatInputModule, MatIconModule, MatButtonModule, MatChipsModule, MatTooltipModule, MatSelectModule, MatOptionModule, MatDialogModule
   ],
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss']
@@ -60,7 +61,7 @@ export class AdminComponent implements OnInit, AfterViewInit {
 
   openAddProduct(): void {
     const ref = this.dialog.open(AddProductDialogComponent, {
-      panelClass: 'add-product-dialog',  
+      panelClass: 'add-product-dialog',
       width: '1000px',
       maxWidth: '95vw',
       maxHeight: '90vh',
@@ -75,7 +76,7 @@ export class AdminComponent implements OnInit, AfterViewInit {
   }
 
 
-  displayedColumns: string[] = ['imagem', 'titulo', 'preco', 'descricao', 'tamanhos', 'categoria'];
+  displayedColumns: string[] = ['imagem', 'titulo', 'preco', 'descricao', 'tamanhos', 'categoria', 'ativo', 'acoes'];
   dataSource = new MatTableDataSource<ProductCard>([]);
 
   filters: FormGroup<FiltersForm> = this.fb.group<FiltersForm>({
@@ -145,10 +146,8 @@ export class AdminComponent implements OnInit, AfterViewInit {
 
   private fetchProdutos(): void {
     this.loading = true;
-    // Supondo: GET /produtos retorna ProductCard[]
     this.api.getProdutos().subscribe({
       next: (produtos) => {
-        console.log(produtos)
         this.dataSource.data = produtos ?? [];
         this.loading = false;
       },
@@ -169,6 +168,63 @@ export class AdminComponent implements OnInit, AfterViewInit {
 
   clearFilters(): void {
     this.filters.reset({ titulo: '', precoMin: null, precoMax: null, tamanho: '', categoriaId: null });
+  }
+
+  togglingId: number | null = null;
+
+  onToggleAtivo(row: ProductCard, checked: boolean): void {
+    if (row.id == null) return;
+
+    // otimista
+    const old = row.ativo ?? false;
+    row.ativo = checked;
+    this.togglingId = row.id;
+
+    this.api.toggleProdutoAtivo(row.id, checked).subscribe({
+      next: () => {
+        this.togglingId = null;
+      },
+      error: (e) => {
+        console.error('Falha ao alternar ativo', e);
+        // reverte
+        row.ativo = old;
+        this.togglingId = null;
+      }
+    });
+  }
+
+  edit(row: ProductCard): void {
+console.log("aqui");
+console.log(row);
+
+    const ref = this.dialog.open(AddProductDialogComponent, {
+      panelClass: 'add-product-dialog',
+      width: '1000px',
+      maxWidth: '95vw',
+      maxHeight: '90vh',
+      autoFocus: false,
+      disableClose: true,
+      data: { categorias: this.categorias as Category[], produto: row as ProductCard } 
+    });
+
+    ref.afterClosed().subscribe((updated: boolean) => {
+      if (updated) this.fetchProdutos();
+    });
+  }
+
+  remove(row: ProductCard): void {
+    if (!row.id) return;
+    const ok = window.confirm(`Excluir o produto "${row.titulo}"?`);
+    if (!ok) return;
+
+    this.loading = true;
+    this.api.deleteProduto(row.id).subscribe({
+      next: () => this.fetchProdutos(),
+      error: (err) => {
+        console.error('Erro ao excluir', err);
+        this.loading = false;
+      }
+    });
   }
 
 

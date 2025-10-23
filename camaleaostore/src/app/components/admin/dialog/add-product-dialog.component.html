@@ -2,7 +2,7 @@
 
     <div class="bg"></div>
 
-    <!-- Botão X -->
+
     <button mat-icon-button class="close-btn" aria-label="Fechar" (click)="close()">
         <mat-icon>close</mat-icon>
     </button>
@@ -11,12 +11,12 @@
 
     <form [formGroup]="form" class="dialog-grid" (ngSubmit)="save()">
 
-        <!-- COLUNA ESQUERDA: upload + preview (compacto) -->
+
         <section class="media">
 
-            <!-- QUANDO JÁ HÁ IMAGEM: preview + botões -->
-            <div class="preview" *ngIf="form.value.imagemBase64; else noImg">
-                <img [src]="form.value.imagemBase64!" alt="Preview da peça" />
+
+            <div class="preview" *ngIf="form.value.imagem_base64; else noImg">
+                <img [src]="form.value.imagem_base64!" alt="Preview da peça" />
 
                 <div class="img-actions">
                     <input #fileInput type="file" accept="image/*" hidden (change)="onFile($event)" />
@@ -32,7 +32,7 @@
                 </div>
             </div>
 
-            <!-- QUANDO NÃO HÁ IMAGEM: só um botão -->
+
             <ng-template #noImg>
                 <div class="uploader">
                     <input #fileInput2 type="file" accept="image/*" hidden (change)="onFile($event)" />
@@ -47,7 +47,7 @@
         </section>
 
 
-        <!-- COLUNA DIREITA: campos -->
+
         <section class="form">
             <mat-form-field appearance="outline" class="full">
                 <mat-label>Título</mat-label>
@@ -83,7 +83,7 @@
             </mat-form-field>
         </section>
 
-        <!-- AÇÕES -->
+
         <div class="actions full">
             <button mat-stroked-button type="button" (click)="close()">Cancelar</button>
             <button mat-flat-button color="primary" [disabled]="form.invalid || saving" type="submit">
