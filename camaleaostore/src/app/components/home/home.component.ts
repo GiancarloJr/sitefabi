@@ -19,17 +19,14 @@ export class HomeComponent {
 
   private api = inject(StoreApiService);
 
-  // id da categoria selecionada (null = todas)
   private categoriaId$ = new BehaviorSubject<number | null>(null);
 
-  // fluxo de produtos observável
   produtos$: Observable<ProductCard[]> = this.categoriaId$.pipe(
     startWith(null),
     switchMap(id => {
       if (id == null) {
         return this.api.getProdutos();
       } else {
-        // retorna apenas o array de produtos do objeto { categoria, produtos }
         return this.api.getProdutosByCategoriaId(id).pipe(
           map(resp => resp.produtos)
         );
