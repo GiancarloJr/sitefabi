@@ -8,11 +8,8 @@
   />
 </section>
 
-<!-- recebe o id da categoria do menu -->
-<!-- menu emite o id -->
 <app-menu (categorySelected)="onCategorySelected($event)"></app-menu>
 
 <div class="container">
-  <!-- o async pipe já atualiza o grid automaticamente -->
   <app-product-grid [products]="(produtos$ | async) || []"></app-product-grid>
 </div>
