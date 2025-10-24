@@ -53,13 +53,20 @@ export class StoreApiService {
     return this.categorias$;
   }
 
+  getProdutosByCategoriaId(categoriaId: number) {
+    return this.http.get<{ categoria: any; produtos: ProductCard[] }>(
+      `${this.baseUrl}/categorias/${categoriaId}/produtos`
+    );
+  }
+
+
   toggleProdutoAtivo(id: number, ativo: boolean) {
     return this.http.patch(`${this.baseUrl}/produtos/${id}/ativo`, { ativo });
   }
 
   updateProduto(id: number, body: CreateProductDto) {
-  return this.http.patch(`${this.baseUrl}/produtos/${id}`, body);
-}
+    return this.http.patch(`${this.baseUrl}/produtos/${id}`, body);
+  }
 
   deleteProduto(id: number) {
     return this.http.delete(`${this.baseUrl}/produtos/${id}`);

@@ -18,7 +18,7 @@ type AddForm = {
   preco: FormControl<number | null>;
   descricao: FormControl<string>;
   tamanhosText: FormControl<string>;
-  categoriaId: FormControl<number | null>;
+  categoria_id: FormControl<number | null>;
   href: FormControl<string>;
   imagem_base64: FormControl<string | null>;
 };
@@ -48,7 +48,7 @@ export class AddProductDialogComponent implements OnInit {
     preco: this.fb.control<number | null>(null),
     descricao: this.fb.nonNullable.control(''),
     tamanhosText: this.fb.nonNullable.control(''),
-    categoriaId: this.fb.control<number | null>(null),
+    categoria_id: this.fb.control<number | null>(null),
     href: this.fb.nonNullable.control(''),
     imagem_base64: this.fb.control<string | null>(null),
   });
@@ -72,7 +72,7 @@ export class AddProductDialogComponent implements OnInit {
         preco: p.preco ?? null,
         descricao: p.descricao ?? '',
         tamanhosText: (p.tamanhos ?? []).join(', '),
-        categoriaId: p.categoria_id ?? null,
+        categoria_id: p.categoria_id ?? null,
         href: p.href ?? '',
         imagem_base64: p.imagem_base64 ?? null,
       });
@@ -113,15 +113,14 @@ export class AddProductDialogComponent implements OnInit {
       imagem_base64: v.imagem_base64 ?? null,
       valor_formatado: null,
       href: v.href || null,
-      categoria_id: v.categoriaId ?? null,
+      categoria_id: v.categoria_id ?? null,
     };
 
     this.saving = true;
 
-    // decide entre criar e atualizar
     const req$ = (this.isEdit && this.productId)
-      ? this.api.updateProduto(this.productId, body)   // <-- atualizar
-      : this.api.createProduto(body);                  // <-- criar
+      ? this.api.updateProduto(this.productId, body) 
+      : this.api.createProduto(body);              
 
     req$.subscribe({
       next: () => { this.saving = false; this.ref.close(true); },

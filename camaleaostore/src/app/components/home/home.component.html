@@ -1,11 +1,18 @@
 <app-header></app-header>
 
 <section class="banner-hero">
-  <img src="assets/planofundo.jpg" alt="Coleção Camaleão Store" loading="eager">
+  <img
+    src="assets/planofundo.jpg"
+    alt="Coleção Camaleão Store"
+    loading="eager"
+  />
 </section>
 
-<app-menu></app-menu>
+<!-- recebe o id da categoria do menu -->
+<!-- menu emite o id -->
+<app-menu (categorySelected)="onCategorySelected($event)"></app-menu>
 
 <div class="container">
-  <app-product-grid [products]="produtos"></app-product-grid>
+  <!-- o async pipe já atualiza o grid automaticamente -->
+  <app-product-grid [products]="(produtos$ | async) || []"></app-product-grid>
 </div>

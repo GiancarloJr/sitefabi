@@ -194,8 +194,6 @@ export class AdminComponent implements OnInit, AfterViewInit {
   }
 
   edit(row: ProductCard): void {
-console.log("aqui");
-console.log(row);
 
     const ref = this.dialog.open(AddProductDialogComponent, {
       panelClass: 'add-product-dialog',
