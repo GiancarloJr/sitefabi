@@ -17,6 +17,10 @@
       {{ loading ? 'Entrando...' : 'Entrar' }}
     </button>
 
+    <button type="button" (click)="home()">
+      Voltar
+    </button>
+
     <p class="error" *ngIf="error">{{ error }}</p>
   </form>
 </div>

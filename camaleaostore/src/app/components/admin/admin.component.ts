@@ -231,5 +231,10 @@ export class AdminComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/login']);
   }
 
+  home(){
+    this.auth.logout();
+    this.router.navigate(['/home']);
+  }
+
 
 }

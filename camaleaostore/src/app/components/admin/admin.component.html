@@ -10,6 +10,11 @@
       <h2>Painel Administrativo</h2>
       <div class="toolbar-actions">
 
+        <button mat-stroked-button type="button" class="clean-btn" (click)="home()">
+          <mat-icon>home</mat-icon>
+          Inicio
+        </button>
+
         <button mat-stroked-button type="button" class="clean-btn" (click)="openAddProduct()">
           <mat-icon>add</mat-icon>
           Adicionar roupa
@@ -66,7 +71,7 @@
         <ng-container matColumnDef="imagem">
           <th mat-header-cell *matHeaderCellDef> Foto </th>
           <td mat-cell *matCellDef="let row">
-            <img *ngIf="row.imagem_base64; else semImg" [src]="row.imagem_base64" width="150" height="220" class="thumb"
+            <img *ngIf="row.href; else semImg" [src]="row.href" width="150" height="220" class="thumb"
               alt="Imagem de {{row.titulo}}">
             <ng-template #semImg>
               <div class="noimg">—</div>

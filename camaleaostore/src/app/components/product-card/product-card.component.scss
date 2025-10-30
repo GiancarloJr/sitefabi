@@ -71,15 +71,13 @@
 
 /* TÍTULO (trava em 2 linhas) */
 .title {
-  font: 700 1.1rem/1.2 "Raleway", sans-serif;
+  font: 700 1.15rem/2 "Raleway", sans-serif;
   margin: 0;
   color: #111;
-
   display: -webkit-box;
-  -webkit-line-clamp: 2;      /* mostra até 2 linhas */
+ // -webkit-line-clamp: 2;      /* mostra até 2 linhas */
   -webkit-box-orient: vertical;
   overflow: hidden;
-  min-height: calc(1.2em * 2); /* reserva espaço de 2 linhas */
 }
 
 /* TAMANHOS (alinhado com rótulo) */
@@ -100,6 +98,7 @@
   margin-right: 4px;
 }
 .size {
+  border: 1px solid #000000;
   background: #f2f4f4;
   color: #1b1f1d;
   border-radius: 6px;
@@ -122,12 +121,12 @@
 }
 
 /* PREÇO */
-.price-container { margin-top: 4px; }
+
 .price {
   display: inline-flex;
   align-items: baseline;
   justify-content: center;
-  font-family: "Raleway", sans-serif;
+
   font-weight: 700;
   color: #000;
   line-height: 1;

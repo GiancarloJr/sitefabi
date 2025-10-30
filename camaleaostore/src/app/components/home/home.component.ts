@@ -18,7 +18,6 @@ import { StoreApiService } from 'src/app/core/services/store-api.service';
 export class HomeComponent implements OnInit {
 
     ngOnInit(): void {
-    // Busca a categoria "Blusas" e carrega automaticamente
     this.api.getCategorias().subscribe(categorias => {
       const blusas = categorias.find(c => c.nome.toLowerCase().includes('blusa'));
       if (blusas) this.categoriaId$.next(blusas.id);

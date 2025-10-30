@@ -43,6 +43,8 @@ export class AddProductDialogComponent implements OnInit {
   isEdit = false;
   private productId: number | null = null;
 
+  isHrefDisabled = true;
+
   form: FormGroup<AddForm> = this.fb.group<AddForm>({
     titulo: this.fb.nonNullable.control('', { validators: [Validators.required] }),
     preco: this.fb.control<number | null>(null),
@@ -57,14 +59,12 @@ export class AddProductDialogComponent implements OnInit {
     private ref: MatDialogRef<AddProductDialogComponent, boolean>,
     @Inject(MAT_DIALOG_DATA)
     public data: { categorias: Category[]; produto: ProductCard }
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     const p = this.data?.produto as ProductCard;
     this.isEdit = !!p;
     this.productId = p?.id ?? null;
-
-    console.log("inicializa"+ p.descricao)
 
     if (p) {
       this.form.patchValue({
@@ -73,10 +73,11 @@ export class AddProductDialogComponent implements OnInit {
         descricao: p.descricao ?? '',
         tamanhosText: (p.tamanhos ?? []).join(', '),
         categoria_id: p.categoria_id ?? null,
-        href: p.href ?? '',
-        imagem_base64: p.imagem_base64 ?? null,
+        href: p.href ?? '',              // mantém URL existente
+        imagem_base64: null,             // só preenche se usuário trocar
       });
     }
+
   }
 
   removeImage() {
@@ -90,7 +91,10 @@ export class AddProductDialogComponent implements OnInit {
 
     const reader = new FileReader();
     reader.onload = () => {
-      this.form.patchValue({ imagem_base64: String(reader.result || '') });
+      this.form.patchValue({
+        imagem_base64: String(reader.result || ''),
+        href: '' // zera para o backend entender que vamos substituir a imagem
+      });
       input.value = '';
     };
     reader.readAsDataURL(file);
@@ -110,23 +114,23 @@ export class AddProductDialogComponent implements OnInit {
       preco: v.preco ?? null,
       descricao: v.descricao || null,
       tamanhos: tamanhos.length ? tamanhos : null,
-      imagem_base64: v.imagem_base64 ?? null,
+      imagem_base64: v.imagem_base64 ?? null, // se tiver => backend sobe para Cloudinary
       valor_formatado: null,
-      href: v.href || null,
+      href: v.href || null,                    // se não tiver base64, usa href
       categoria_id: v.categoria_id ?? null,
     };
 
     this.saving = true;
-
     const req$ = (this.isEdit && this.productId)
-      ? this.api.updateProduto(this.productId, body) 
-      : this.api.createProduto(body);              
+      ? this.api.updateProduto(this.productId!, body)
+      : this.api.createProduto(body);
 
     req$.subscribe({
       next: () => { this.saving = false; this.ref.close(true); },
       error: (err) => { console.error(this.isEdit ? 'Erro ao atualizar produto' : 'Erro ao criar produto', err); this.saving = false; }
     });
   }
+
 
   close(): void {
     this.ref.close(false);
